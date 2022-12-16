@@ -18,7 +18,7 @@ def all_users():
 
     for user in users:
         users_list.append(user.to_dict())
-    
+
     return jsonify(users_list)
 
 
