@@ -24,8 +24,19 @@ def status():
 @app_views.route('/stats')
 def number_of_objects():
 
-    classes = [Amenity, City, Place, Review, State, User]
-    classes_name = ['amenities', 'cities', 'places', 'reviews', 'states', 'users']
+    classes = [Amenity,
+               City,
+               Place,
+               Review,
+               State,
+               User]
+
+    classes_name = ['amenities',
+                    'cities',
+                    'places',
+                    'reviews',
+                    'states',
+                    'users']
 
     number_objs = {}
     for index in range(len(classes)):
