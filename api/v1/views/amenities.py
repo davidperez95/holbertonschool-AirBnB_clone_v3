@@ -18,7 +18,7 @@ def all_amenities():
 
     for amenity in amenities:
         amenities_list.append(amenity.to_dict())
-    
+
     return jsonify(amenities_list)
 
 
