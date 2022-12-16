@@ -17,6 +17,7 @@ def close(exception):
     """close the storage"""
     storage.close()
 
+
 @app.errorhandler(404)
 def not_found_error(error):
     """
