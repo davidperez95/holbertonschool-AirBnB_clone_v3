@@ -24,10 +24,11 @@ def status():
 @app_views.route('/stats')
 def number_of_objects():
 
-    classes = [Amenity, City, Place, State, User]
+    classes = [Amenity, City, Place, Review, State, User]
+    classes_name = ['amenities', 'cities', 'places', 'reviews', 'states', 'users']
 
     number_objs = {}
-    for check_class in classes:
-        number_objs[check_class.__name__] = storage.count(check_class)
+    for index in range(len(classes)):
+        number_objs[classes_name[index]] = storage.count(classes[index])
 
     return jsonify(number_objs)
