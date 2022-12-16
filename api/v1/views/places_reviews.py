@@ -18,14 +18,13 @@ def all_reviews(place_id):
     given by the place id
     """
     place = storage.get(Place, place_id)
+
     if not place:
         abort(404)
 
-    reviews_list = []
-    for review in place.reviews:
-        reviews_list.append(review.to_dict())
+    reviews = [review.to_dict() for review in place.reviews]
 
-    return jsonify(reviews_list)
+    return jsonify(reviews)
 
 
 @app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
@@ -69,10 +68,10 @@ def post_review(place_id):
         abort(404)
 
     if not request.get_json():
-        abort(404, description='Not a JSON')
+        abort(400, description="Not a JSON")
 
     if 'user_id' not in request.get_json():
-        abort(400, description='Missing user_id')
+        abort(400, description="Missing user_id")
 
     data = request.get_json()
     user = storage.get(User, data['user_id'])
@@ -81,7 +80,7 @@ def post_review(place_id):
         abort(404)
 
     if 'text' not in request.get_json():
-        abort(400, description='Missing text')
+        abort(400, description="Missing text")
 
     data['place_id'] = place_id
     instance = Review(**data)
@@ -100,7 +99,7 @@ def put_review(review_id):
         abort(404)
 
     if not request.get_json():
-        abort(400, description='Not a JSON')
+        abort(400, description="Not a JSON")
 
     ignore = ['id', 'user_id', 'place_id', 'created_at', 'updated_at']
 
