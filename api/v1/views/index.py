@@ -20,11 +20,13 @@ def status():
     """
     return jsonify({'status': 'OK'})
 
+
 @app_views.route('/stats')
 def number_of_objects():
+
     classes = [Amenity, City, Place, State, User]
 
-    number_objs = {}    
+    number_objs = {}
     for check_class in classes:
         number_objs[check_class.__name__] = storage.count(check_class)
 
