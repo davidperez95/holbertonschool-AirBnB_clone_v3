@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module for reviews views
+Module for reviews views of users and places
 """
 from api.v1.views import app_views
 from models import storage
@@ -14,7 +14,7 @@ from flask import abort, jsonify, make_response, request
                  strict_slashes=False)
 def get_reviews(place_id):
     """Returns all the reviews of a place"""
-    place = storage.get(Place), place_id)
+    place = storage.get(Place, place_id)
     if place is None:
         abort(404)
     reviews = []
@@ -27,7 +27,7 @@ def get_reviews(place_id):
                  strict_slashes=False)
 def get_review(review_id):
     """Returns a review by its id"""
-    review = storage.get(Review), review_id)
+    review = storage.get(Review, review_id)
     if review is None:
         abort(404)
     return jsonify(review.to_dict())
