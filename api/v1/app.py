@@ -11,7 +11,7 @@ from os import environ
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
-cors = CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 
 @app.teardown_appcontext
